@@ -1,1 +1,216 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
 
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.curriculum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 30px;
+    max-width: 1300px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.semester {
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    border-top: 5px solid #3498db;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.semester h2 {
+    color: #3498db;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.course-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.course-item {
+    background-color: #ecf0f1;
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 5px solid #bdc3c7;
+    font-size: 0.95em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.course-item:hover:not(.approved):not(.blocked) {
+    background-color: #e0e6e7;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para ramos aprobados */
+.course-item.approved {
+    background-color: #2ecc71; /* Verde brillante */
+    color: #fff;
+    text-decoration: line-through;
+    border-left-color: #27ae60;
+    cursor: default;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para ramos bloqueados */
+.course-item.blocked {
+    background-color: #e74c3c; /* Rojo para bloqueado */
+    color: #fff;
+    cursor: not-allowed;
+    border-left-color: #c0392b;
+    opacity: 0.7;
+    position: relative;
+}
+
+.course-item.blocked::after {
+    content: '🔒';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+}
+
+/* Mensaje de advertencia flotante */
+.message-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s;
+}
+
+.message-overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.message-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease-out;
+}
+
+.message-overlay.show .message-box {
+    transform: translateY(0);
+}
+
+.message-box p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.message-box button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.message-box button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .curriculum-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .semester {
+        padding: 15px;
+    }
+
+    .semester h2 {
+        font-size: 1.4em;
+    }
+
+    .course-item {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+        padding: 15px;
+    }
+
+    .curriculum-grid {
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .message-box {
+        padding: 20px;
+        margin: 0 20px;
+    }
+
+    .message-box p {
+        font-size: 1em;
+    }
+
+    .message-box button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
